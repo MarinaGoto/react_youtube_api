@@ -24,7 +24,7 @@ ul {
 }
 
 .hero{
-    margin: 120px;
+    margin-top: 160px;
 }
 
 .header {
@@ -58,7 +58,7 @@ ul {
     border-radius: 3px;
 }
 .navigation ul li:hover {
-    background: #e50914;
+    background: #eee;
     cursor: pointer;
 }
 
@@ -91,7 +91,7 @@ ul {
     transition: border .25s ease, width .125s ease .125s;
 }
 .search-bar input:focus {
-    border: 2px solid #e50914;
+    border: 2px solid #eee;
     width: 30%;
 }
 
@@ -126,7 +126,7 @@ ul {
     cursor: pointer;
 }
 .user_profile .user:hover .image {
-    border: 3px solid black;
+    border: 3px solid #eee;
 }
 .user_profile .user_profile-menu {
     display: none;
@@ -150,4 +150,19 @@ ul {
 
 .list-group-item:hover {
     background-color: #eee;
+}
+.logo{
+    width: 120px;
+    height: 30px;
+    margin-right: 10px;
+    transition: margin .125s ease;
+}
+/* appear - on page load */
+.fade-appear{
+    opacity: 0;
+    z-index: 1;
+}
+.fade-appear.fade-appear-active{
+    opacity: 1;
+    transition: opacity 300ms linear;
 }

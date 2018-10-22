@@ -3,10 +3,12 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Navigation from './components/header/navigation';
 import Profile from './components/header/profile';
+import Logo from './components/header/logo';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
+import {CSSTransition} from 'react-transition-group';
 const API_KEY = 'AIzaSyATtY8n7nNLIJRGo3EuyGoSpBc3xhuS0TI';
 
 
@@ -17,7 +19,8 @@ class App extends Component {
 
         this.state = {
             videos: [] ,
-            selectedVideo: null
+            selectedVideo: null,
+            appearVideoDetail: true,
         };
 
         this.videoSearch('surfboards');
@@ -37,15 +40,24 @@ class App extends Component {
 
     render(){
         const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300);
+        const {appearVideoDetail} = this.state;
     return(
         <div className="hero">
             <header className="header">
+                <Logo/>
                 <Navigation/>
                 <Profile/>
             <SearchBar onSearchTermChange={videoSearch}/>
             </header>
+            <CSSTransition
+                in={appearVideoDetail}
+                appear={true}
+                timeout={300}
+                classNames="fade"
+            >
             <VideoDetail video = {this.state.selectedVideo} />
-            <VideoList
+            </CSSTransition>
+                <VideoList
                 onVideoSelect = {selectedVideo => this.setState({selectedVideo})}
                 videos={this.state.videos}/>
 
@@ -54,6 +66,5 @@ class App extends Component {
     }
 }
 
-// Take this component's generated HTML and put it
-// on the page (in the DOM)
+
 ReactDOM.render(<App />, document.querySelector('.container'));
